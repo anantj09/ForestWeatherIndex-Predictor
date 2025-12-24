@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Analysis System</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #ffffff;
+            --border: #222222;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Ambient background glow */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Top Left Name Style */
+        .user-name {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 0.7rem;
+            color: #333;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-container {
+            text-align: center;
+            max-width: 800px; /* Slightly wider to accommodate longer lines */
+            padding: 40px;
+        }
+
+        h1 {
+            font-weight: 200;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .btn-launch {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-launch:hover {
+            background-color: transparent;
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .footer-note {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.7rem;
+            color: #333;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="user-name">
+        Anant Jain
+    </div>
+
+    <div class="hero-container">
+        <h1>ALGERIAN FOREST FIRE</h1>
+        <div class="subtitle">FWI Prediction System</div>
+        
+        <p class="description">
+            Utilizing Lasso regularization to predict the Fire Weather Index (FWI).<br>
+            Monitor atmospheric conditions including Temperature, Relative Humidity,<br>
+            and Wind Speed to assess wildfire risks with precision.
+        </p>
+
+        <a href="{{ url_for('predict_datapoint') }}" class="btn-launch">
+            Launch Predictor
+        </a>
+    </div>
+
+    <div class="footer-note">
+        Machine Learning Minor Project v1.0
+    </div>
+
+</body>
+</html>

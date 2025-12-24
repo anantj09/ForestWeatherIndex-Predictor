@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #ffffff;
+            --border: #222222;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 800px; /* Increased width for two columns */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 200;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+        }
+
+        /* The Grid Layout */
+        .grid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            gap: 20px; /* Space between inputs */
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: #000000;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #1a1a1a;
+        }
+
+        /* Make the button and results span both columns */
+        .full-width {
+            grid-column: span 2;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #cccccc;
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        .result-value {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.4rem;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Responsive: Stack columns on small screens */
+        @media (max-width: 600px) {
+            .grid-form {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fire Weather Index Prediction</h1>
+
+        <form action="{{url_for('predict_datapoint')}}" method="post" class="grid-form">
+            <input type="text" name="Temperature" placeholder="Temperature" required="required" value="{{ form_data.Temperature if form_data }}"/>
+            <input type="text" name="RH" placeholder="RH" required="required" value="{{ form_data.RH if form_data }}"/>
+            <input type="text" name="Ws" placeholder="Ws" required="required" value="{{ form_data.Ws if form_data }}"/>
+            <input type="text" name="Rain" placeholder="Rain" required="required" value="{{ form_data.Rain if form_data }}"/>
+            <input type="text" name="FFMC" placeholder="FFMC" required="required" value="{{ form_data.FFMC if form_data }}"/>
+            <input type="text" name="DMC" placeholder="DMC" required="required" value="{{ form_data.DMC if form_data }}"/>
+            <input type="text" name="ISI" placeholder="ISI" required="required" value="{{ form_data.ISI if form_data }}"/>
+            <input type="text" name="Classes" placeholder="Classes" required="required" value="{{ form_data.Classes if form_data }}"/>
+            
+            <div class="full-width">
+                <input type="text" name="Region" placeholder="Region" required="required" value="{{ form_data.Region if form_data }}"/>
+            </div>
+
+            <div class="full-width">
+                <button type="Submit">Predict FWI</button>
+            </div>
+        </form>
+
+        {% if results %}
+        <h2>
+            FWI Prediction
+            <span class="result-value">{{results}}</span>
+        </h2>
+        {% endif %}
+    </div>
+</body>
+</html>
