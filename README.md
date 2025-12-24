@@ -19,21 +19,19 @@ A machine learning solution designed to predict the **Fire Weather Index (FWI)**
 The project utilizes environmental data from the Bejaia and Sidi Bel-Abbes regions of Algeria. The goal is to shift from reactive fire monitoring to predictive risk management using atmospheric parameters.
 
 ### 💡 Key Features:
-1. **Lasso Regularization:** Employs Lasso (L1) regression to prevent overfitting and perform automated feature selection, ensuring high model interpretability.
-2. **Real-time Inference:** A Flask-based web interface where users can input parameters like Temperature, Humidity, and Wind Speed to get instant FWI scores.
-3. **Clean Architecture:** Separated concern between the research phase (Jupyter Notebooks) and the production phase (Flask Application).
+1. **Lasso Regularization:** Leverages L1 regularization for automated feature selection and robust generalization, effectively mitigating multi-collinearity among atmospheric features.
+2. **Real-time Inference:** A lightweight Flask-based interface providing instant FWI scoring based on 9 atmospheric and fire-behavior parameters (Temperature, RH, Ws, etc.).
+3. **Production-Ready Architecture:** Implements a clean separation between the experimental research phase (Jupyter) and a modular, scalable production environment.
 
-## 🛠️ Tech Stack
-- **Machine Learning:** Scikit-Learn (Lasso, Ridge, Linear Regression)
-- **Deployment:** Flask, Render, Gunicorn
-- **Data Stack:** Pandas, NumPy, Matplotlib, Seaborn
-- **Frontend:** HTML5, CSS3 (Modern Dark UI)
+## ⚙️ Tech & Results:
+- **Stack:** Stack: Python, Flask, Scikit-Learn, Pandas, Render, CSS3 with HTML.
+- **Model Selection:** Lasso Regression was selected as the final production engine due to its superior error-handling and ability to shrink coefficients of less important features to zero.
+- **Key Result:** Achieved a high predictive accuracy with an R² score of 89.68% and a Mean Absolute Error (MAE) of 1.02.
 
 ## 📊 Results & Insights
-- **Core Technique:** Lasso Regression (L1 Regularization)
-- **Key Metric:** The Lasso model was selected for production due to its robust performance and ability to handle multi-collinearity among atmospheric features.
-- **Validation:** Visualized through residual plots and R² scoring to ensure reliable predictions across varying weather conditions.
-
+- **Core Technique:** Supervised Machine Learning with an End-to-End Deployment pipeline.
+- **Feature Importance:** Atmospheric features were analyzed for high correlation with FWI; parameters like FFMC and ISI were identified as critical drivers of fire intensity.
+- **Validation:** Performance was verified through residual analysis and R² scoring to ensure reliable predictions across varying weather patterns and geographical regions.
 
 
 ## 📂 Project Structure
@@ -44,7 +42,7 @@ The project utilizes environmental data from the Bejaia and Sidi Bel-Abbes regio
 │   ├── ridge.pkl                                 # Ridge regression model
 │   └── scaler.pkl                                # StandardScaler for feature normalization
 ├── templates/
-│   ├── index.html                                # Landing Page (Hero Section)
+│   ├── index.html                                # Landing Page
 │   └── home.html                                 # Prediction Form & Result UI
 ├── notebooks/
 │   ├── ridgelasso.ipynb                          # Model Training & EDA Notebook
